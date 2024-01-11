@@ -5,6 +5,7 @@ import 'package:shamo/screens/auth/sign_up_screen.dart';
 import 'package:shamo/screens/home/detail_chat_page.dart';
 import 'package:shamo/screens/home/main_page.dart';
 import 'package:shamo/screens/pages/edit_profile_page.dart';
+import 'package:shamo/screens/pages/product_page.dart';
 
 import 'screens/splash/splash_screen.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const MainPage(),
         '/detail-chat': (context) => const DetailChatPage(),
         '/edit-page': (context) => const EditProfilePage(),
+        '/product': (context) => ProductPage(),
       },
     );
   }

@@ -12,6 +12,7 @@ class AppColors {
   static const bgColor3 = Color(0xff242231);
   static const bgColor4 = Color(0xff252836);
   static const bgColor5 = Color(0xff2B2844);
+  static const bgColor6 = Color(0xffECEDEF);
   static const primaryTextColor = Color(0xffF1F0F2);
   static const secondaryTextColor = Color(0xff999999);
   static const subtitleTextColor = Color(0xff504F5E);
