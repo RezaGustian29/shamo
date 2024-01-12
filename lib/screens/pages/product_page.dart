@@ -29,9 +29,93 @@ class _ProductPageState extends State<ProductPage> {
   ];
 
   int currenIndex = 0;
+  bool isWishlist = false;
 
   @override
   Widget build(BuildContext context) {
+    Future<void> ShowSuccessDialog() async {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) => Container(
+          width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+          child: AlertDialog(
+            backgroundColor: AppColors.bgColor3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.close,
+                        color: AppColors.primaryTextColor,
+                      ),
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/icons/icon_success.png',
+                    width: 100,
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  const Text(
+                    'Hurray :)',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.primaryTextColor,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  const Text(
+                    'Item added successfully',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.secondaryTextColor,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 144,
+                    height: 44,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: AppColors.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'View My Cart',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primaryTextColor,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     Widget indicator(int index) {
       return Container(
         width: currenIndex == index ? 16 : 4,
@@ -171,9 +255,49 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/button/button_wishlist.png',
-                    width: 46,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isWishlist = !isWishlist;
+                      });
+                      if (isWishlist) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: AppColors.secondaryColor,
+                            content: Text(
+                              'Has been added to the Wishlist',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.primaryTextColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: AppColors.alertColor,
+                            content: Text(
+                              'Has been added to the Wishlist',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.primaryTextColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: Image.asset(
+                      isWishlist
+                          ? 'assets/button/button_wishlist_blue.png'
+                          : 'assets/button/button_wishlist.png',
+                      width: 46,
+                    ),
                   ),
                 ],
               ),
@@ -294,33 +418,40 @@ class _ProductPageState extends State<ProductPage> {
             //NOTE: BUTTONS
             Container(
               width: double.infinity,
-              margin: EdgeInsets.all(35),
+              margin: const EdgeInsets.all(35),
               child: Row(
                 children: [
-                  Container(
-                    width: 54,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/button/button_chat.png'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/detail-chat');
+                    },
+                    child: Container(
+                      width: 54,
+                      height: 54,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/button/button_chat.png'),
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Expanded(
                     child: Container(
                       height: 54,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          ShowSuccessDialog();
+                        },
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                           backgroundColor: AppColors.primaryColor,
                         ),
-                        child: Text(
+                        child: const Text(
                           'Add toCart',
                           style: TextStyle(
                             fontSize: 16,
