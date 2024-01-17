@@ -98,7 +98,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'View My Cart',
                         style: TextStyle(
                           fontSize: 16,
@@ -120,7 +120,7 @@ class _ProductPageState extends State<ProductPage> {
       return Container(
         width: currenIndex == index ? 16 : 4,
         height: 4,
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 2,
         ),
         decoration: BoxDecoration(
@@ -136,7 +136,7 @@ class _ProductPageState extends State<ProductPage> {
       return Container(
         width: 54,
         height: 54,
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           right: 16,
         ),
         decoration: BoxDecoration(

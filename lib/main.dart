@@ -7,6 +7,7 @@ import 'package:shamo/screens/home/main_page.dart';
 import 'package:shamo/screens/pages/edit_profile_page.dart';
 import 'package:shamo/screens/pages/product_page.dart';
 
+import 'screens/pages/cart_page.dart';
 import 'screens/splash/splash_screen.dart';
 
 void main() {
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/detail-chat': (context) => const DetailChatPage(),
         '/edit-page': (context) => const EditProfilePage(),
         '/product': (context) => ProductPage(),
+        '/cart': (context) => const CartPage(),
       },
     );
   }
